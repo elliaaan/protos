@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package order;
+
+option go_package = "github.com/elliaaan/proto-gen/pb/order;orderpb";
+
+message ReviewEvent {
+  uint64 id = 1;
+  uint64 product_id = 2;
+  uint64 user_id = 3;
+  float rating = 4;
+}
