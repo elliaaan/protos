@@ -1,12 +1,30 @@
 syntax = "proto3";
 
-package order;
+package statistics;
 
-option go_package = "github.com/elliaaan/proto-gen/pb/order;orderpb";
+option go_package = "github.com/elliaaan/proto-gen/pb/statistics;statisticspb";
 
-message ReviewEvent {
-  uint64 id = 1;
-  uint64 product_id = 2;
-  uint64 user_id = 3;
-  float rating = 4;
+message UserOrderStatisticsRequest {
+  uint64 user_id = 1;
+}
+
+message UserOrderStatisticsResponse {
+  uint64 user_id = 1;
+  uint32 total_orders = 2;
+}
+
+message UserStatisticsRequest {
+  uint64 user_id = 1;
+}
+
+message UserStatisticsResponse {
+  uint64 user_id = 1;
+  uint32 total_events = 2;
+  uint32 order_events = 3;
+  uint32 product_events = 4;
+}
+
+service StatisticsService {
+  rpc GetUserOrdersStatistics(UserOrderStatisticsRequest) returns (UserOrderStatisticsResponse);
+  rpc GetUserStatistics(UserStatisticsRequest) returns (UserStatisticsResponse);
 }
